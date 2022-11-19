@@ -14,7 +14,30 @@ import {
 } from "@material-ui/core";
 import { PhotoCamera } from "@material-ui/icons";
 import useStyles from "./styles";
-const cards = [1,2,3,4,5,6,7,8,9]
+import BasicModal from "./BasicModal";
+
+const cards = [
+  {
+    heading : "harry puttar 1",
+    body : "puttar is born",
+    imgageUrl : "https://bornbabies.com/public/main_category/New%20Born%20Essential.webp"
+  },
+  {
+    heading : "harry puttar 2",
+    body : "puttar goes school",
+    imgageUrl : "https://upload.wikimedia.org/wikipedia/en/8/8e/Hari_Puttar%2C_A_Comedy_of_Terrors.jpeg"
+  },
+  {
+    heading : "harry puttar 3",
+    body : "puttar goes college",
+    imgageUrl : "https://img.jagranjosh.com/imported/images/E/Articles/8-Indian-college-campuses-made.jpg"
+  },
+  {
+    heading : "harry puttar 4",
+    body : "puttar gets a job",
+    imgageUrl : "https://gumlet.assettype.com/film-companion/import/wp-content/uploads/2020/01/Film_Companion_TVF-Cubicles-Lead-image-1.jpg?w=1200&h=675&auto=format%2Ccompress&fit=max"
+  }
+]
 function MuiComponent() {
   const classes = useStyles();
   return (
@@ -68,29 +91,25 @@ function MuiComponent() {
         </div>
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {cards.map((card) => (
+            {cards.map((item,index) => (
 
-            <Grid item key= {card} xs={12} sm={6} md={4}>
+            <Grid item key= {index} xs={12} sm={6} md={4}>
               <Card className={classes.card}>
                 <CardMedia
                   className={classes.cardMedia}
-                  image="https://source.unsplash.com/random"
-                  title="Image Title"
+                  image={item.imgageUrl}
+                  title={item.title}
                 />
                 <CardContent className={classes.cardContent}>
                   <Typography gutterBottom variant="h5">
-                    Heading
+                  {item.title}
                   </Typography>
                   <Typography>
-                    This is a media card. You can use this section to describe
-                    the content.
+                    {item.body}
                   </Typography>
                 </CardContent>
                 <CardActions>
-                  <Button size="small" color="primary">
-                    {" "}
-                    view
-                  </Button>
+                  <BasicModal item={item}/>
                   <Button size="small" color="primary">
                     {" "}
                     Edit
